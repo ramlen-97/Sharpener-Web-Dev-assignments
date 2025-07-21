@@ -1,15 +1,18 @@
 const express=require('express');
 const app=express();
 
-const categoryRouter=require('./routes/categories');
-const productRouter=require('./routes/products');
-const bookRouter=require('./routes/books');
+const studentRouter=require('./routes/student');
+const courseRouter=require('./routes/course');
 
 app.use(express.json());
 
-app.use('/categories',categoryRouter);
-app.use('/products',productRouter);
-app.use('/books',bookRouter);
+app.get('/',(req,res)=>{
+    console.log("Welcome message")
+    res.send("Welcome to the Student & Course Portal API!");
+})
+
+app.use('/students',studentRouter);
+app.use('/courses',courseRouter);
 
 app.use((req,res)=>{
     res.status(404).send(`<h1>404 - Page not found</h1>`)
