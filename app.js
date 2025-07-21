@@ -1,22 +1,27 @@
 const express=require('express');
 const app=express();
 
-app.get("/orders",(req,res,next)=>{
-    res.send("Here is the list of all orders")
+
+app.get("/products",(req,res,next)=>{
+    res.send("Here is the list of all products")
 })
 
-app.post("/orders",(req,res,next)=>{
-    res.send("A new order has been created");
+app.post("/products",(req,res,next)=>{
+    res.send("A new product has been added");
 })
 
-app.get("/users",(req,res,next)=>{
-    res.send("Here is the list of all users")
+app.get("/categories",(req,res,next)=>{
+    res.send("Here is the list of all categories")
 })
 
-app.post("/users",(req,res,next)=>{
-    res.send("A new user has been added");
+app.post("/categories",(req,res,next)=>{
+    res.send("A new category has been created");
 })
 
-app.listen(3000,()=>{
-    console.log("Server is running on http://localhost:3000");
+app.use((req,res)=>{
+    res.status(404).send(`<h1>404 - Page not found</h1>`)
+})
+
+app.listen(4000,()=>{
+    console.log("Server is running on http://localhost:4000");
 })
