@@ -1,11 +1,27 @@
 const express=require('express');
 const app=express();
 
+app.use((req,res,next)=>{
+    const method=req.method;
+    const url=req.url;
+    console.log(`${method} request made to ${url}`);
+    next();
+})
 
-app.get('/welcome/:username',(req,res)=>{
-    const username=req.params.username;
-    const role=req.query.role;
-    res.send(`<h1>Welcome ${username}, your role is ${role}.</h1>`)
+app.get("/products",(req,res,next)=>{
+    res.send("Here is the list of all products")
+})
+
+app.post("/products",(req,res,next)=>{
+    res.send("A new product has been added");
+})
+
+app.get("/categories",(req,res,next)=>{
+    res.send("Here is the list of all categories")
+})
+
+app.post("/categories",(req,res,next)=>{
+    res.send("A new category has been created");
 })
 
 app.use((req,res)=>{
