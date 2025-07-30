@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 
 app.use('/students', studentRoutes);
 
-db.sync({force:true}).then(() => {
+db.sync().then(() => {
     app.listen(3000, (err) => {
         console.log("Server is running");
     })
