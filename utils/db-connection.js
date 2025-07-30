@@ -4,7 +4,7 @@ const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'Ramlen@97',
-    database: 'testdb'
+    database: 'studentmanagement'
 })
 
 connection.connect((err) => {
@@ -18,7 +18,8 @@ connection.connect((err) => {
     const creationQuery = `create table IF NOT EXISTS Students(
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(225),
-        email VARCHAR(255)
+        email VARCHAR(255),
+        age INT
     )`
 
     connection.execute(creationQuery, (err) => {
