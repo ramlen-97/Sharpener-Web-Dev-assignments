@@ -8,4 +8,6 @@ router.post("/",studentController.addEntries);
 router.put('/:id',studentController.updateEntry);
 router.delete('/:id',studentController.deleteEntry);
 
+router.post("/addingStudentWithCard",studentController.addingValuesToStudentAndIdentityTable);
+
 module.exports=router;

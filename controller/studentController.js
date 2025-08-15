@@ -1,6 +1,7 @@
 const db = require('../utils/db-connection');
 const Student = require('../models/students');
-
+const IdentityCard = require('../models/identitycard');
+const Department=require('../models/department');
 // const getAllStudents = (req, res) => {
 //     const query = `SELECT * FROM students`;
 //     db.execute(query, (err, result) => {
@@ -46,11 +47,11 @@ const updateEntry = async (req, res) => {
     try {
         const { id } = req.params;
         const { name, email } = req.body;
-        const student=await Student.findByPk(id);
-        if(!student){
+        const student = await Student.findByPk(id);
+        if (!student) {
             res.status(404).send("User is not found");
         }
-        student.name=name;
+        student.name = name;
         await student.save();
         res.status(200).send("User has been updated");
     } catch (error) {
@@ -58,25 +59,38 @@ const updateEntry = async (req, res) => {
     }
 }
 
-const deleteEntry = async(req, res) => {
+const deleteEntry = async (req, res) => {
     try {
         const { id } = req.params;
-        const student=await Student.destroy({where:{id}});
-        if(!student){
+        const student = await Student.destroy({ where: { id } });
+        if (!student) {
             res.status(404).send("User is not found");
         }
         res.status(200).send("User is deleted");
-        
+
     } catch (error) {
         console.log(error);
         res.status(500).send("Error encountered while deleting.")
     }
 }
+const addingValuesToStudentAndIdentityTable = async (req, res) => {
+    try {
+        const student = await student.create(req.body.student);
+        const idCard = await IdentityCard.create({
+            ...req.body.identityCard,
+            StudentId: student.id
+        });
 
+        res.status(201).json({student,idCard});
+    } catch (error) {
+        res.status(500).json({error:error.message});
+    }
+}
 module.exports = {
     // getAllStudents,
     // getStudentById,
     addEntries,
     updateEntry,
-    deleteEntry
+    deleteEntry,
+    addingValuesToStudentAndIdentityTable
 }
