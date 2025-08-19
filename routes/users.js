@@ -4,6 +4,7 @@ const userController=require('../controller/users');
 
 
 router.get('/',userController.getAllUsers);
-router.post('/',userController.addNewUser)
+router.post('/',userController.addNewUser);
+router.get('/:id/bookings',userController.getUserBookings);
 
 module.exports=router;

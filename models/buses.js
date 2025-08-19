@@ -1,6 +1,5 @@
 const {Sequelize,DataTypes}=require('sequelize');
 const sequelize=require('../utils/db-connection');
-const { type } = require('os');
 
 const Buses=sequelize.define('Buses',{
     id:{
@@ -10,7 +9,7 @@ const Buses=sequelize.define('Buses',{
         allowNull:false
     },
     busNumber:{
-        type:DataTypes.INTEGER,
+        type:DataTypes.STRING,
         allowNull:false
     },
     totalSeats:{

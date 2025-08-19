@@ -1,5 +1,7 @@
 const sequelize = require('../utils/db-connection');
 const Users = require('../models/users');
+const Bookings=require('../models/bookings');
+const Bus=require('../models/buses');
 
 const getAllUsers = async(req, res) => {
     try {
@@ -8,7 +10,7 @@ const getAllUsers = async(req, res) => {
         res.status(200).send({users});
     } catch (error) {
         console.log(error);
-        res.status(500).send("Unable to get the users");
+        res.status(500).json("Unable to get the users");
     }
 }
 
@@ -19,11 +21,24 @@ const addNewUser = async(req, res) => {
         res.status(201).send(`User with name : ${name} is successfully created!`)
     } catch (error) {
         console.log(error);
-        res.status(500).send("Unable to add user");
+        res.status(500).json("Unable to add user");
     }
 }
 
+const getUserBookings=async(req,res)=>{
+    try {
+        const {id}=req.params;
+        const user=await Bookings.findAll({where:{UserId:id},include:Bus});
+        res.status(200).json(user);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({'error':error.message})
+    }
+}
+
+
 module.exports = {
     getAllUsers,
-    addNewUser
+    addNewUser,
+    getUserBookings
 }
