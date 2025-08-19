@@ -1,4 +1,3 @@
-const db = require('../utils/db-connection');
 const Student = require('../models/students');
 const IdentityCard = require('../models/identitycard');
 const Department=require('../models/department');
