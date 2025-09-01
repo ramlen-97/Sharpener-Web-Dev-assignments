@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            background-color: #e8f5e9;
+            margin: auto;
+            width: 55%;
+            height: 100%;
+        }
+
+        div {
+            background-color: #c8e6c9;
+            padding: 10px;
+            border: 1px solid greenyellow;
+            height: 100%;
+            width: 100%;
+            text-align: center;
+        }
+        form{
+            font-weight: bolder;
+            font-size: large;
+        }
+        input{
+            margin-bottom: 5px;
+        }
+        ul {
+            list-style-type: none;
+            text-align: left;
+            font-size: larger;
+        }
+
+        button {
+            background-color: blanchedalmond;
+        }
+
+        button:hover {
+            background-color: brown;
+        }
+
+        h1 {
+            color: #1b5e20;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Inventory Management</h1>
+        <form onsubmit="handleFormSubmit(event)">
+            <label for="itemname">Item Name :</label>
+            <input type="text" name="itemname" id="itemname">
+            <br>
+            <label for="description">Description :</label>
+            <input type="text" name="description" id="description">
+            <br>
+            <label for="price">Price :</label>
+            <input type="number" name="price" id="price">
+            <br>
+            <label for="quantity">Quantity :</label>
+            <input type="number" name="quantity" id="quantity">
+            <br>
+            <button type="submit">Add Item</button>
+        </form>
+        <br>
+        <input type="text" placeholder="Search Items..." id="filter">
+        <ul>
+        </ul>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"></script>
+<script src="/js/shop.js"></script>
+
+</html>
